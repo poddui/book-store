@@ -18,8 +18,8 @@ public class Application {
 		public CommandLineRunner demo(BookRepository repository) 
 		{return (args) -> {
 			Book k1 = new Book("Testikirja1", "Joonas Mäki", 2000, "304509", 13.40);
-			Book k2 = new Book("Testikirja2", "Jarkko Oja", 2002, "304355", 13.40);
-			Book k3 = new Book("Testikirja3", "Jussi Matka", 2004, "304534", 13.40);
+			Book k2 = new Book("Testikirja2", "Jarkko Oja", 2002, "304355", 11.60);
+			Book k3 = new Book("Testikirja3", "Jussi Matka", 2004, "304534", 9.40);
 			
 			repository.save(k1);
 			repository.save(k2);
