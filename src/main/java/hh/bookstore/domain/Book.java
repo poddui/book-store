@@ -1,14 +1,21 @@
-package hh.bookstrore.domain;
+package hh.bookstore.domain;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Book {
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	private String title;
 	private String author;
-	private Integer release_year;
+	private int release_year;
 	private String isbn;
 	private Double price;
 	
-	public Book(String title, String author, Integer release_year, String isbn, Double price) {
+	public Book(String title, String author, int release_year, String isbn, Double price) {
 		super();
 		this.title = title;
 		this.author = author;
@@ -21,9 +28,19 @@ public class Book {
 		super();
 		this.title = null;
 		this.author = null;
-		this.release_year = null;
+		this.release_year = 0;
 		this.isbn = null;
 		this.price = null;
+	}
+
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -42,11 +59,11 @@ public class Book {
 		this.author = author;
 	}
 
-	public Integer getRelease_year() {
+	public int getRelease_year() {
 		return release_year;
 	}
 
-	public void setRelease_year(Integer release_year) {
+	public void setRelease_year(int release_year) {
 		this.release_year = release_year;
 	}
 
