@@ -3,6 +3,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Book {
@@ -14,14 +16,18 @@ public class Book {
 	private int release_year;
 	private String isbn;
 	private Double price;
+	@ManyToOne
+    @JoinColumn ( name = "categoryid")
+    private Category category;
 	
-	public Book(String title, String author, int release_year, String isbn, Double price) {
+	public Book(String title, String author, int release_year, String isbn, Double price, Category category) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.release_year = release_year;
 		this.isbn = isbn;
 		this.price = price;
+		this.category = category;
 	}
 	
 	public Book() {
@@ -31,9 +37,10 @@ public class Book {
 		this.release_year = 0;
 		this.isbn = null;
 		this.price = null;
+		this.category = null;
+		
 	}
 
-	
 
 	public Long getId() {
 		return id;
@@ -82,12 +89,22 @@ public class Book {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+	
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 	@Override
-	public String toString() {
-		return "Book [title=" + title + ", author=" + author + ", release_year=" + release_year + ", isbn=" + isbn
-				+ ", price=" + price + "]";
+    public String toString() {
+        if (this.category != null)
+            return "Book [id=" + id + ", title=" + title + ", author=" + author + ", release year=" + release_year + ", isbn" + isbn + ", price " + price + " department =" + this.getCategory() + "]";
+        else
+            return "Book [id=" + id + ", title=" + title + ", author=" + author + ", release year=" + release_year + ", isbn" + isbn + ", price " + price + "]";
 	}
-	
 	
 }
