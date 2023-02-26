@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import hh.bookstore.domain.Book;
 import hh.bookstore.domain.BookRepository;
+import hh.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookController {
 	@Autowired
 	private BookRepository repository;
+	@Autowired
+	private CategoryRepository crepository;
 	
 	@GetMapping("/index")
 	public String IndexController() {
@@ -32,9 +35,10 @@ public class BookController {
 		repository.deleteById(bookId);
 		return "redirect:../booklist";
 	}
-	@RequestMapping(value = "/add")
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addBook(Model model) {
 		model.addAttribute("books", new Book());
+		model.addAttribute("categories", crepository.findAll());
 		return "addbook";
 	}
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -42,5 +46,7 @@ public class BookController {
 		repository.save(book);
 		return "redirect:booklist";
 	}
+	
+	
 	
 }
