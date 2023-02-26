@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kategoriat</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>Kategoriat</h1>
+       <table class="table table-striped">
+           <tbody>
+               <tr>
+               <td><b>Id</b></td>
+               <td><b>Nimi</b></td>
+               <td><b></b></td>
+               </tr>
+               <tr th:each = "category : ${categories}">
+               <td th:text= "${category.categoryid}"></td>
+               <td th:text= "${category.name}"></td>
+               <td><a th:href="@{/deletecategory/{id}(id=${category.categoryid})}" class="btn btn-danger">Delete</a></td>
+               </tr>
+           </tbody>
+       </table>
+       <a href="/addcategory" class="btn btn-success">Add Category</a>
+</body>
+</html>
