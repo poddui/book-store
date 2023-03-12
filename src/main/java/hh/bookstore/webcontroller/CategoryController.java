@@ -1,5 +1,7 @@
 package hh.bookstore.webcontroller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import hh.bookstore.domain.Category;
 import hh.bookstore.domain.CategoryRepository;
 
@@ -35,6 +39,11 @@ public class CategoryController {
 		repository.deleteById(categoryid);
 		return "redirect:../categorylist";
 	}
+	// RESTful service to get all categories
+    @RequestMapping(value="/jsoncategories", method = RequestMethod.GET)
+    public @ResponseBody List<Category> studentListRest() {
+        return (List<Category>) repository.findAll();
+    }
 
 	
 }
